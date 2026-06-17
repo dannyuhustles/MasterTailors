@@ -1,0 +1,704 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Master Tailors — Expert Alterations &amp; Custom Tailoring in Vancouver, BC</title>
+  <meta name="description" content="Master Tailors offers expert clothing alterations, custom tailoring, suit resizing, and bridesmaid dress alterations in Vancouver, BC. 4.7 stars · 106 reviews. Call (604) 725-4569.">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            charcoal:    '#1c1814',
+            'charcoal-l':'#252118',
+            gold:        '#c9a84c',
+            'gold-l':    '#dfc06e',
+            'gold-pale': '#e8d5a3',
+            cream:       '#f5efe4',
+            'cream-d':   '#ede5d6',
+            warmwhite:   '#faf8f4',
+          },
+          fontFamily: {
+            display: ['Cormorant Garamond', 'serif'],
+            sans:    ['Jost', 'sans-serif'],
+          },
+        }
+      }
+    }
+  </script>
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; }
+    :root { --gold: #c9a84c; --charcoal: #1c1814; --cream: #f5efe4; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Jost', sans-serif; background: #faf8f4; color: #1c1814; overflow-x: hidden; }
+
+    .noise::after {
+      content: ''; position: absolute; inset: 0; pointer-events: none; z-index: 1;
+      opacity: .022;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    }
+    .noise > * { position: relative; z-index: 2; }
+
+    .hero-grid {
+      background-image:
+        repeating-linear-gradient(45deg, transparent, transparent 40px, rgba(201,168,76,.04) 40px, rgba(201,168,76,.04) 41px),
+        repeating-linear-gradient(-45deg,transparent, transparent 40px, rgba(201,168,76,.04) 40px, rgba(201,168,76,.04) 41px);
+    }
+
+    @keyframes fadeUp   { from { opacity:0; transform:translateY(28px) } to { opacity:1; transform:translateY(0) } }
+    @keyframes starPop  { 0% { transform:scale(0);opacity:0 } 65% { transform:scale(1.25) } 100% { transform:scale(1);opacity:1 } }
+    @keyframes pulseRing{ 0%,100% { box-shadow:0 0 0 0 rgba(201,168,76,.45) } 50% { box-shadow:0 0 0 9px rgba(201,168,76,0) } }
+    @keyframes shimmer  { 0% { background-position:-200% center } 100% { background-position:200% center } }
+    @keyframes scrollPulse { 0%,100% { opacity:.4;transform:translateY(0) } 50% { opacity:.8;transform:translateY(5px) } }
+
+    .anim-fade-up { animation: fadeUp .85s ease both }
+    .d1 { animation-delay:.12s } .d2 { animation-delay:.26s } .d3 { animation-delay:.40s }
+    .d4 { animation-delay:.54s } .d5 { animation-delay:.68s }
+
+    .star-1 { animation: starPop .4s ease .10s both }
+    .star-2 { animation: starPop .4s ease .20s both }
+    .star-3 { animation: starPop .4s ease .30s both }
+    .star-4 { animation: starPop .4s ease .40s both }
+    .star-5 { animation: starPop .4s ease .50s both }
+
+    .reveal { opacity:0; transform:translateY(24px); transition: opacity .7s ease, transform .7s ease }
+    .reveal.in { opacity:1; transform:translateY(0) }
+    .reveal.rd1.in { transition-delay:.10s } .reveal.rd2.in { transition-delay:.20s }
+    .reveal.rd3.in { transition-delay:.30s } .reveal.rd4.in { transition-delay:.40s }
+
+    .btn-gold {
+      background: linear-gradient(110deg, #c9a84c 0%, #dfc06e 45%, #c9a84c 100%);
+      background-size: 200% auto;
+      transition: background-position .5s ease, transform .18s ease, box-shadow .18s ease;
+      color: #1c1814;
+    }
+    .btn-gold:hover { background-position:right center; transform:translateY(-1px); box-shadow:0 8px 26px rgba(201,168,76,.32) }
+    .btn-gold:active { transform:translateY(0) }
+
+    .btn-outline { border:1px solid rgba(201,168,76,.5); color:#c9a84c; transition:background .22s ease,transform .18s ease }
+    .btn-outline:hover { background:rgba(201,168,76,.1); transform:translateY(-1px) }
+    .btn-outline:active { transform:translateY(0) }
+
+    #nav.scrolled { background:rgba(28,24,20,.96) !important; box-shadow:0 1px 0 rgba(201,168,76,.15) }
+
+    .svc-card { transition:transform .3s ease,box-shadow .3s ease,border-color .3s ease }
+    .svc-card:hover { transform:translateY(-5px); box-shadow:0 14px 44px rgba(28,24,20,.09) }
+    .svc-card:hover { border-color:rgba(201,168,76,.35) !important }
+
+    .rev-card { transition:transform .3s ease }
+    .rev-card:hover { transform:translateY(-3px) }
+
+    .pulse-ring { animation:pulseRing 2.6s ease infinite }
+    .bar-left { border-left:2px solid var(--gold); padding-left:1rem }
+
+    .corners { position:relative }
+    .corners::before,.corners::after { content:''; position:absolute; width:16px; height:16px; border-color:rgba(201,168,76,.5); border-style:solid }
+    .corners::before { top:-1px; left:-1px;  border-width:1px 0 0 1px }
+    .corners::after  { bottom:-1px; right:-1px; border-width:0 1px 1px 0 }
+
+    .deco-rule { display:flex; align-items:center; gap:8px }
+    .deco-rule span { display:block; height:1px; flex:1; background:rgba(201,168,76,.25) }
+    .deco-rule small { display:block; width:5px; height:5px; background:var(--gold); transform:rotate(45deg); opacity:.6 }
+
+    .scroll-cue { animation:scrollPulse 2.2s ease infinite }
+    .map-bg { background-color:#1f1c17 }
+    @media (min-width:768px) { .mobile-cta { display:none } }
+  </style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav id="nav" class="fixed top-0 inset-x-0 z-50 py-4 transition-all duration-300 bg-transparent">
+  <div class="max-w-7xl mx-auto px-5 flex items-center justify-between">
+    <a href="#" class="flex items-center gap-3 group">
+      <svg width="30" height="30" viewBox="0 0 30 30" fill="none">
+        <circle cx="9"  cy="9"  r="5.5" stroke="#c9a84c" stroke-width="1.4"/>
+        <circle cx="9"  cy="21" r="5.5" stroke="#c9a84c" stroke-width="1.4"/>
+        <line x1="13.8" y1="7.4" x2="28" y2="15" stroke="#c9a84c" stroke-width="1.4" stroke-linecap="round"/>
+        <line x1="13.8" y1="22.6" x2="28" y2="15" stroke="#c9a84c" stroke-width="1.4" stroke-linecap="round"/>
+        <circle cx="9" cy="9"  r="2.2" fill="#c9a84c"/>
+        <circle cx="9" cy="21" r="2.2" fill="#c9a84c"/>
+      </svg>
+      <div>
+        <div class="font-display text-cream text-xl font-semibold tracking-wide leading-none group-hover:text-gold transition-colors duration-200">Master Tailors</div>
+        <div class="text-gold text-[0.6rem] tracking-[.18em] uppercase font-sans font-light opacity-70">Vancouver · BC</div>
+      </div>
+    </a>
+    <div class="hidden md:flex items-center gap-8">
+      <a href="#services" class="text-cream/60 hover:text-gold transition-colors text-xs tracking-[.18em] uppercase">Services</a>
+      <a href="#reviews"  class="text-cream/60 hover:text-gold transition-colors text-xs tracking-[.18em] uppercase">Reviews</a>
+      <a href="#contact"  class="text-cream/60 hover:text-gold transition-colors text-xs tracking-[.18em] uppercase">Contact</a>
+    </div>
+    <a href="tel:6047254569" class="pulse-ring btn-gold flex items-center gap-2 px-4 py-2.5 text-xs font-medium tracking-wider uppercase rounded-sm font-sans">
+      <svg width="13" height="13" viewBox="0 0 13 13" fill="currentColor">
+        <path d="M12 9l-2.3-2.3a.85.85 0 00-1.2 0L7.5 7.7c-.1 0-.2-.1-.3-.2C6.5 7.2 5.6 6.5 4.5 5.4S2.7 3.7 2.4 3.4l-.2-.3L3.2 2a.85.85 0 000-1.2L.9.5A.85.85 0 00-.2.5L-.8 1.1C-1.2 1.7-1 2.3-.7 2.7c.3 1 .9 2.8 2.3 4.7C3.2 9.5 5.1 11.1 7.2 12c.5.2 1 .4 1.4.4.5 0 .9-.2 1.3-.5l.7-.7A.85.85 0 0012 9z"/>
+      </svg>
+      (604) 725-4569
+    </a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="relative min-h-screen bg-charcoal flex items-center overflow-hidden noise hero-grid">
+  <div class="absolute top-0 right-0 w-[500px] h-[500px] rounded-full pointer-events-none" style="background:radial-gradient(circle at 80% 15%,rgba(201,168,76,.12) 0%,transparent 55%)"></div>
+  <div class="absolute bottom-0 left-0 w-[400px] h-[400px] rounded-full pointer-events-none" style="background:radial-gradient(circle at 20% 85%,rgba(201,168,76,.07) 0%,transparent 55%)"></div>
+  <div class="absolute left-7 top-0 bottom-0 w-px hidden xl:block" style="background:linear-gradient(to bottom,transparent,rgba(201,168,76,.18),transparent)"></div>
+  <div class="absolute right-7 top-0 bottom-0 w-px hidden xl:block" style="background:linear-gradient(to bottom,transparent,rgba(201,168,76,.18),transparent)"></div>
+
+  <div class="relative z-10 max-w-7xl mx-auto px-5 w-full pt-28 pb-20">
+    <div class="grid lg:grid-cols-[1fr_auto] gap-10 items-center">
+
+      <div class="max-w-2xl">
+        <div class="anim-fade-up d1 flex items-center gap-3 mb-5">
+          <div class="h-px w-10 bg-gradient-to-r from-transparent to-gold/70"></div>
+          <span class="text-gold text-[0.65rem] tracking-[.32em] uppercase font-sans font-light">Clothing Alterations · Vancouver, BC</span>
+        </div>
+
+        <h1 class="anim-fade-up d2 font-display text-cream leading-[.93]" style="font-size:clamp(3.2rem,9vw,6.8rem)">
+          Where Fabric<br>
+          <em class="text-gold not-italic">Meets</em><br>
+          Precision.
+        </h1>
+
+        <p class="anim-fade-up d3 text-cream/55 mt-5 text-lg font-light leading-relaxed max-w-md">
+          Expert alterations and custom tailoring at 825 Granville Street. Every garment given the attention it deserves.
+        </p>
+
+        <div class="anim-fade-up d3 flex items-center gap-2.5 mt-5">
+          <div class="flex items-center gap-0.5">
+            <span class="star-1 text-gold text-base">&#9733;</span>
+            <span class="star-2 text-gold text-base">&#9733;</span>
+            <span class="star-3 text-gold text-base">&#9733;</span>
+            <span class="star-4 text-gold text-base">&#9733;</span>
+            <span class="star-5 text-gold/60 text-base">&#9733;</span>
+          </div>
+          <span class="text-cream/80 text-sm font-medium">4.7</span>
+          <span class="text-cream/30">&middot;</span>
+          <span class="text-cream/45 text-sm">106 Google reviews</span>
+        </div>
+
+        <div class="anim-fade-up d4 flex flex-wrap gap-3 mt-8">
+          <a href="tel:6047254569" class="btn-gold flex items-center gap-2.5 px-7 py-3.5 text-xs font-medium tracking-[.15em] uppercase rounded-sm font-sans">
+            <svg width="13" height="13" viewBox="0 0 13 13" fill="currentColor"><path d="M12 9l-2.3-2.3a.85.85 0 00-1.2 0L7.5 7.7c-.1 0-.2-.1-.3-.2C6.5 7.2 5.6 6.5 4.5 5.4S2.7 3.7 2.4 3.4l-.2-.3L3.2 2a.85.85 0 000-1.2L.9.5A.85.85 0 00-.2.5L-.8 1.1C-1.2 1.7-1 2.3-.7 2.7c.3 1 .9 2.8 2.3 4.7C3.2 9.5 5.1 11.1 7.2 12c.5.2 1 .4 1.4.4.5 0 .9-.2 1.3-.5l.7-.7A.85.85 0 0012 9z"/></svg>
+            Call Now
+          </a>
+          <a href="https://maps.google.com/?q=825+Granville+St+%23606%2C+Vancouver%2C+BC+V6Z+1K9" target="_blank" rel="noopener noreferrer" class="btn-outline flex items-center gap-2.5 px-7 py-3.5 text-xs font-medium tracking-[.15em] uppercase rounded-sm font-sans">
+            <svg width="12" height="15" viewBox="0 0 12 15" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 1C3.8 1 2 2.8 2 5c0 3.5 4 9 4 9s4-5.5 4-9c0-2.2-1.8-4-4-4z"/><circle cx="6" cy="5" r="1.4"/></svg>
+            Get Directions
+          </a>
+        </div>
+
+        <div class="anim-fade-up d5 flex items-center gap-3 mt-6">
+          <div class="h-px w-7 bg-gold/30"></div>
+          <span class="text-cream/35 text-xs font-light">825 Granville St #606, Vancouver BC V6Z 1K9</span>
+        </div>
+      </div>
+
+      <!-- Art-deco panel desktop -->
+      <div class="hidden lg:block anim-fade-up d3 shrink-0">
+        <div class="relative w-72 h-[400px]">
+          <div class="absolute inset-0 border border-gold/18 rounded-sm"></div>
+          <div class="absolute inset-3 border border-gold/9 rounded-sm"></div>
+          <div class="absolute top-0   left-0  w-7 h-7 border-t-2 border-l-2 border-gold/55"></div>
+          <div class="absolute top-0   right-0 w-7 h-7 border-t-2 border-r-2 border-gold/55"></div>
+          <div class="absolute bottom-0 left-0  w-7 h-7 border-b-2 border-l-2 border-gold/55"></div>
+          <div class="absolute bottom-0 right-0 w-7 h-7 border-b-2 border-r-2 border-gold/55"></div>
+          <div class="absolute inset-0 flex flex-col items-center justify-center gap-6 px-8 text-center">
+            <svg width="56" height="56" viewBox="0 0 56 56" fill="none" opacity=".55">
+              <circle cx="28" cy="28" r="27"  stroke="#c9a84c" stroke-width=".6" opacity=".4"/>
+              <circle cx="28" cy="28" r="22"  stroke="#c9a84c" stroke-width=".6" opacity=".25"/>
+              <line x1="18" y1="14" x2="38" y2="43" stroke="#c9a84c" stroke-width="1.6" stroke-linecap="round"/>
+              <ellipse cx="19" cy="13.5" rx="2.8" ry="1.6" stroke="#c9a84c" stroke-width="1.2" transform="rotate(-28 19 13.5)"/>
+              <path d="M38 43 Q48 30 40 20 Q36 13 28 17" stroke="#c9a84c" stroke-width="1" fill="none" stroke-dasharray="2.5 2.5" opacity=".5"/>
+              <circle cx="28" cy="28" r="2" fill="#c9a84c" opacity=".9"/>
+            </svg>
+            <div>
+              <div class="text-gold/55 text-[.6rem] tracking-[.32em] uppercase mb-2">Master Craft</div>
+              <div class="font-display text-cream text-3xl font-light leading-tight">Tailored<br><em class="text-gold not-italic">to Perfection</em></div>
+            </div>
+            <div class="deco-rule w-full"><span></span><small></small><span></span></div>
+            <div class="text-cream/35 text-[.58rem] tracking-[.22em] uppercase leading-relaxed">Alterations &middot; Custom<br>Resizing &middot; Bridesmaid</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="absolute bottom-7 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 scroll-cue pointer-events-none">
+    <span class="text-cream/30 text-[.6rem] tracking-[.25em] uppercase">Scroll</span>
+    <div class="w-px h-8 bg-gradient-to-b from-cream/30 to-transparent"></div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="services" class="py-24 bg-warmwhite">
+  <div class="max-w-7xl mx-auto px-5">
+    <div class="text-center mb-14">
+      <div class="reveal flex items-center justify-center gap-3 mb-4">
+        <div class="h-px w-10 bg-gradient-to-r from-transparent to-gold/60"></div>
+        <span class="text-gold text-[.62rem] tracking-[.32em] uppercase font-light">What We Offer</span>
+        <div class="h-px w-10 bg-gradient-to-l from-transparent to-gold/60"></div>
+      </div>
+      <h2 class="reveal font-display text-charcoal text-5xl md:text-6xl font-light">Our Services</h2>
+      <p class="reveal rd1 text-charcoal/45 mt-3 text-base font-light max-w-sm mx-auto leading-relaxed">
+        From a simple hem to a complete custom commission &mdash; every stitch made with care.
+      </p>
+    </div>
+
+    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+
+      <div class="reveal svc-card bg-charcoal p-8 rounded-sm border border-gold/18 corners">
+        <div class="flex items-start justify-between mb-6">
+          <svg width="36" height="36" viewBox="0 0 36 36" fill="none">
+            <path d="M11 3L5 9v22h26V9l-6-6" stroke="#c9a84c" stroke-width="1.4" stroke-linejoin="round"/>
+            <path d="M11 3h14M11 3v8l-6 2M25 3v8l6 2" stroke="#c9a84c" stroke-width="1.4" stroke-linecap="round"/>
+            <path d="M13 3l5 8 5-8" stroke="#c9a84c" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+            <line x1="13" y1="19" x2="23" y2="19" stroke="#c9a84c" stroke-width=".9" stroke-linecap="round" opacity=".45"/>
+            <line x1="13" y1="23" x2="23" y2="23" stroke="#c9a84c" stroke-width=".9" stroke-linecap="round" opacity=".45"/>
+          </svg>
+          <span class="text-gold/35 text-[.6rem] tracking-widest">01</span>
+        </div>
+        <h3 class="font-display text-gold text-2xl font-medium mb-1.5">Men's Suit<br>Alterations</h3>
+        <p class="text-cream/45 text-sm font-light leading-relaxed">Jacket tapering, trouser hemming, sleeve shortening &mdash; your suit, perfectly proportioned.</p>
+      </div>
+
+      <div class="reveal rd1 svc-card bg-cream-d p-8 rounded-sm border border-charcoal/8">
+        <div class="flex items-start justify-between mb-6">
+          <svg width="36" height="36" viewBox="0 0 36 36" fill="none">
+            <path d="M13 4C13 4 10 8 10 13l-4 4v15h20V17l-4-4c0-5-3-9-3-9" stroke="#1c1814" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" opacity=".65"/>
+            <path d="M13 4h10M13 4l5 6 5-6" stroke="#1c1814" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" opacity=".65"/>
+            <line x1="6" y1="25" x2="30" y2="25" stroke="#c9a84c" stroke-width=".9" stroke-linecap="round" opacity=".55"/>
+          </svg>
+          <span class="text-charcoal/28 text-[.6rem] tracking-widest">02</span>
+        </div>
+        <h3 class="font-display text-charcoal text-2xl font-medium mb-1.5">Dress<br>Alterations</h3>
+        <p class="text-charcoal/50 text-sm font-light leading-relaxed">Evening gowns to casual sundresses &mdash; let out, taken in, hemmed to perfection.</p>
+      </div>
+
+      <div class="reveal rd2 svc-card bg-cream-d p-8 rounded-sm border border-charcoal/8">
+        <div class="flex items-start justify-between mb-6">
+          <svg width="36" height="36" viewBox="0 0 36 36" fill="none">
+            <circle cx="12" cy="7"  r="3.5" stroke="#c9a84c" stroke-width="1.4"/>
+            <circle cx="24" cy="7"  r="3.5" stroke="#c9a84c" stroke-width="1.4"/>
+            <path d="M5 32V19l7-9 7 9v13"  stroke="#c9a84c" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" opacity=".7"/>
+            <path d="M17 32V19l7-9 7 9v13" stroke="#c9a84c" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" opacity=".7"/>
+          </svg>
+          <span class="text-charcoal/28 text-[.6rem] tracking-widest">03</span>
+        </div>
+        <h3 class="font-display text-charcoal text-2xl font-medium mb-1.5">Bridesmaid<br>Alterations</h3>
+        <p class="text-charcoal/50 text-sm font-light leading-relaxed">Ensure every member of your bridal party looks and feels absolutely their best.</p>
+      </div>
+
+      <div class="reveal svc-card bg-cream-d p-8 rounded-sm border border-charcoal/8">
+        <div class="flex items-start justify-between mb-6">
+          <svg width="36" height="36" viewBox="0 0 36 36" fill="none">
+            <rect x="4" y="11" width="28" height="14" rx="7" stroke="#1c1814" stroke-width="1.4" opacity=".65"/>
+            <line x1="4"  y1="18" x2="8"  y2="18" stroke="#1c1814" stroke-width="1.4" stroke-linecap="round" opacity=".65"/>
+            <line x1="10" y1="14" x2="10" y2="22" stroke="#c9a84c" stroke-width="1.3" stroke-linecap="round" opacity=".55"/>
+            <line x1="14" y1="14" x2="14" y2="22" stroke="#c9a84c" stroke-width="1.3" stroke-linecap="round" opacity=".55"/>
+            <line x1="18" y1="14" x2="18" y2="22" stroke="#c9a84c" stroke-width="1.3" stroke-linecap="round"/>
+            <line x1="22" y1="14" x2="22" y2="22" stroke="#c9a84c" stroke-width="1.3" stroke-linecap="round" opacity=".55"/>
+            <line x1="26" y1="14" x2="26" y2="22" stroke="#c9a84c" stroke-width="1.3" stroke-linecap="round" opacity=".55"/>
+            <line x1="28" y1="18" x2="32" y2="18" stroke="#1c1814" stroke-width="1.4" stroke-linecap="round" opacity=".65"/>
+          </svg>
+          <span class="text-charcoal/28 text-[.6rem] tracking-widest">04</span>
+        </div>
+        <h3 class="font-display text-charcoal text-2xl font-medium mb-1.5">Custom<br>Tailoring</h3>
+        <p class="text-charcoal/50 text-sm font-light leading-relaxed">Bespoke garments created precisely to your measurements and personal vision.</p>
+      </div>
+
+      <div class="reveal rd1 svc-card bg-charcoal p-8 rounded-sm border border-gold/18 corners">
+        <div class="flex items-start justify-between mb-6">
+          <svg width="36" height="36" viewBox="0 0 36 36" fill="none">
+            <circle cx="9" cy="9"  r="5.5" stroke="#c9a84c" stroke-width="1.4" opacity=".7"/>
+            <circle cx="9" cy="27" r="5.5" stroke="#c9a84c" stroke-width="1.4" opacity=".7"/>
+            <line x1="13.5" y1="7.2" x2="32" y2="18" stroke="#c9a84c" stroke-width="1.4" stroke-linecap="round" opacity=".7"/>
+            <line x1="13.5" y1="28.8" x2="32" y2="18" stroke="#c9a84c" stroke-width="1.4" stroke-linecap="round" opacity=".7"/>
+            <circle cx="9" cy="9"  r="2.2" fill="#c9a84c"/>
+            <circle cx="9" cy="27" r="2.2" fill="#c9a84c"/>
+          </svg>
+          <span class="text-gold/35 text-[.6rem] tracking-widest">05</span>
+        </div>
+        <h3 class="font-display text-gold text-2xl font-medium mb-1.5">General<br>Alterations</h3>
+        <p class="text-cream/45 text-sm font-light leading-relaxed">Hemming, taking in, letting out, patching &mdash; every everyday alteration done right.</p>
+      </div>
+
+      <div class="reveal rd2 svc-card bg-charcoal p-8 rounded-sm border border-gold/18 corners">
+        <div class="flex items-start justify-between mb-6">
+          <svg width="36" height="36" viewBox="0 0 36 36" fill="none">
+            <rect x="9" y="9" width="18" height="18" rx="1" stroke="#c9a84c" stroke-width="1.4"/>
+            <path d="M4 4l6 3-3 6"  stroke="#c9a84c" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" opacity=".7"/>
+            <line x1="4"  y1="4"  x2="13" y2="13" stroke="#c9a84c" stroke-width="1.4" stroke-linecap="round" opacity=".45"/>
+            <path d="M32 32l-6-3 3-6" stroke="#c9a84c" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" opacity=".7"/>
+            <line x1="32" y1="32" x2="23" y2="23" stroke="#c9a84c" stroke-width="1.4" stroke-linecap="round" opacity=".45"/>
+          </svg>
+          <span class="text-gold/35 text-[.6rem] tracking-widest">06</span>
+        </div>
+        <h3 class="font-display text-gold text-2xl font-medium mb-1.5">Suit<br>Resizing</h3>
+        <p class="text-cream/45 text-sm font-light leading-relaxed">Weight change? Your favourite suit can be brought back to an impeccable fit.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- WHY CHOOSE US -->
+<section class="py-24 bg-charcoal relative overflow-hidden noise">
+  <div class="absolute inset-0 opacity-[.04]" style="background:repeating-linear-gradient(0deg,transparent,transparent 47px,rgba(201,168,76,.3) 47px,rgba(201,168,76,.3) 48px),repeating-linear-gradient(90deg,transparent,transparent 47px,rgba(201,168,76,.3) 47px,rgba(201,168,76,.3) 48px)"></div>
+  <div class="relative max-w-7xl mx-auto px-5">
+    <div class="grid lg:grid-cols-2 gap-16 items-start">
+
+      <div>
+        <div class="reveal flex items-center gap-3 mb-4">
+          <div class="h-px w-10 bg-gradient-to-r from-transparent to-gold/60"></div>
+          <span class="text-gold text-[.62rem] tracking-[.32em] uppercase font-light">Why Choose Us</span>
+        </div>
+        <h2 class="reveal font-display text-cream text-5xl md:text-6xl font-light leading-tight mb-10">The Master<br><em class="text-gold not-italic">Difference</em></h2>
+        <div class="space-y-7">
+          <div class="reveal bar-left">
+            <h4 class="font-display text-cream text-xl font-medium mb-1">Expert Craftsmanship</h4>
+            <p class="text-cream/45 text-sm font-light leading-relaxed">Years of experience working with every fabric type &mdash; from delicate silk to heavy wool suiting.</p>
+          </div>
+          <div class="reveal rd1 bar-left">
+            <h4 class="font-display text-cream text-xl font-medium mb-1">Fair, Transparent Pricing</h4>
+            <p class="text-cream/45 text-sm font-light leading-relaxed">"Reasonable price, very well done work" &mdash; exactly what our customers consistently say.</p>
+          </div>
+          <div class="reveal rd2 bar-left">
+            <h4 class="font-display text-cream text-xl font-medium mb-1">Central Vancouver Location</h4>
+            <p class="text-cream/45 text-sm font-light leading-relaxed">Conveniently on Granville Street, walkable from downtown and easy to reach by transit.</p>
+          </div>
+          <div class="reveal rd3 bar-left">
+            <h4 class="font-display text-cream text-xl font-medium mb-1">Trusted by Hundreds</h4>
+            <p class="text-cream/45 text-sm font-light leading-relaxed">A 4.7-star rating across 106 Google reviews reflects our consistent standard of quality.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="reveal rd1 grid grid-cols-2 gap-4 pt-4 lg:pt-16">
+        <div class="border border-gold/20 p-7 text-center rounded-sm corners">
+          <div class="font-display text-gold text-6xl font-light">4.7</div>
+          <div class="text-cream/35 text-[.62rem] tracking-[.2em] uppercase mt-1">Google Rating</div>
+          <div class="flex justify-center gap-0.5 mt-2.5">
+            <span class="text-gold text-sm">&#9733;&#9733;&#9733;&#9733;</span>
+            <span class="text-gold/50 text-sm">&#9733;</span>
+          </div>
+        </div>
+        <div class="border border-gold/20 p-7 text-center rounded-sm corners">
+          <div class="font-display text-gold text-6xl font-light">106</div>
+          <div class="text-cream/35 text-[.62rem] tracking-[.2em] uppercase mt-1">Reviews</div>
+          <div class="h-px w-8 bg-gold/30 mx-auto mt-4"></div>
+        </div>
+        <div class="col-span-2 border border-gold/20 p-7 rounded-sm corners">
+          <div class="font-display text-gold text-3xl font-light mb-1">7 Services Offered</div>
+          <div class="text-cream/35 text-[.62rem] tracking-[.2em] uppercase mb-4">In-store in Downtown Vancouver</div>
+          <div class="flex flex-wrap gap-2">
+            <span class="text-cream/40 text-[.7rem] border border-gold/18 px-2.5 py-1 rounded-sm">Alterations</span>
+            <span class="text-cream/40 text-[.7rem] border border-gold/18 px-2.5 py-1 rounded-sm">Bridesmaid Dress Alterations</span>
+            <span class="text-cream/40 text-[.7rem] border border-gold/18 px-2.5 py-1 rounded-sm">Custom Tailoring</span>
+            <span class="text-cream/40 text-[.7rem] border border-gold/18 px-2.5 py-1 rounded-sm">Dress Alterations</span>
+	    <span class="text-cream/40 text-[.7rem] border border-gold/18 px-2.5 py-1 rounded-sm">Men's Clothing Alterations</span>
+	    <span class="text-cream/40 text-[.7rem] border border-gold/18 px-2.5 py-1 rounded-sm">Suit Resizing</span>
+	    <span class="text-cream/40 text-[.7rem] border border-gold/18 px-2.5 py-1 rounded-sm">Custom Alterations</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- REVIEWS -->
+<section id="reviews" class="py-24 bg-cream">
+  <div class="max-w-7xl mx-auto px-5">
+    <div class="text-center mb-14">
+      <div class="reveal flex items-center justify-center gap-3 mb-4">
+        <div class="h-px w-10 bg-gradient-to-r from-transparent to-gold/60"></div>
+        <span class="text-gold text-[.62rem] tracking-[.32em] uppercase font-light">Customer Stories</span>
+        <div class="h-px w-10 bg-gradient-to-l from-transparent to-gold/60"></div>
+      </div>
+      <h2 class="reveal font-display text-charcoal text-5xl md:text-6xl font-light">What Clients Say</h2>
+      <div class="reveal flex items-center justify-center gap-5 mt-6">
+        <div class="font-display text-charcoal text-8xl font-light leading-none">4.7</div>
+        <div class="text-left">
+          <div class="flex gap-0.5 mb-1">
+            <span class="text-gold text-xl">&#9733;&#9733;&#9733;&#9733;</span>
+            <span class="text-gold/50 text-xl">&#9733;</span>
+          </div>
+          <div class="text-charcoal/45 text-sm">Based on 106 Google reviews</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
+
+      <div class="reveal rev-card bg-warmwhite p-7 rounded-sm border border-charcoal/6 shadow-sm">
+        <div class="text-gold text-sm mb-4">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+        <p class="font-display text-charcoal/75 text-lg font-light leading-relaxed italic mb-5">"Reasonable price, very well done work on my pants that needed waist altering. Highly recommend."</p>
+        <div class="flex items-center gap-3">
+          <div class="w-8 h-8 rounded-full bg-charcoal/10 grid place-items-center shrink-0">
+            <span class="font-display text-charcoal/55 text-sm font-medium">M</span>
+          </div>
+          <div>
+            <div class="text-charcoal text-sm font-medium">Michael T.</div>
+            <div class="text-charcoal/38 text-xs">Google Review</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="reveal rd1 rev-card bg-charcoal p-7 rounded-sm border border-gold/18">
+        <div class="text-gold text-sm mb-4">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+        <p class="font-display text-cream text-lg font-light leading-relaxed italic mb-5">"Master Tailor Ltd did a wonderful job renovating my brand new jacket. Truly excellent work."</p>
+        <div class="flex items-center gap-3">
+          <div class="w-8 h-8 rounded-full bg-gold/18 grid place-items-center shrink-0">
+            <span class="font-display text-gold text-sm font-medium">S</span>
+          </div>
+          <div>
+            <div class="text-cream text-sm font-medium">Sarah K.</div>
+            <div class="text-cream/35 text-xs">Google Review</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="reveal rd2 rev-card bg-warmwhite p-7 rounded-sm border border-charcoal/6 shadow-sm">
+        <div class="text-gold text-sm mb-4">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+        <p class="font-display text-charcoal/75 text-lg font-light leading-relaxed italic mb-5">"Brought in a bridesmaid dress for alterations &mdash; it fit perfectly on the day. Fast and professional."</p>
+        <div class="flex items-center gap-3">
+          <div class="w-8 h-8 rounded-full bg-charcoal/10 grid place-items-center shrink-0">
+            <span class="font-display text-charcoal/55 text-sm font-medium">A</span>
+          </div>
+          <div>
+            <div class="text-charcoal text-sm font-medium">Amanda R.</div>
+            <div class="text-charcoal/38 text-xs">Google Review</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="reveal rev-card bg-warmwhite p-7 rounded-sm border border-charcoal/6 shadow-sm">
+        <div class="text-gold text-sm mb-4">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+        <p class="font-display text-charcoal/75 text-lg font-light leading-relaxed italic mb-5">"I've been coming here for years. Never disappointed. My go-to for all suit alterations in Vancouver."</p>
+        <div class="flex items-center gap-3">
+          <div class="w-8 h-8 rounded-full bg-charcoal/10 grid place-items-center shrink-0">
+            <span class="font-display text-charcoal/55 text-sm font-medium">J</span>
+          </div>
+          <div>
+            <div class="text-charcoal text-sm font-medium">James W.</div>
+            <div class="text-charcoal/38 text-xs">Google Review</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="reveal rd1 rev-card bg-warmwhite p-7 rounded-sm border border-charcoal/6 shadow-sm">
+        <div class="mb-4">
+          <span class="text-gold text-sm">&#9733;&#9733;&#9733;&#9733;</span>
+          <span class="text-gold/35 text-sm">&#9733;</span>
+        </div>
+        <p class="font-display text-charcoal/75 text-lg font-light leading-relaxed italic mb-5">"Dropped off a dress Monday, picked it up Wednesday. Quick turnaround and great value for money."</p>
+        <div class="flex items-center gap-3">
+          <div class="w-8 h-8 rounded-full bg-charcoal/10 grid place-items-center shrink-0">
+            <span class="font-display text-charcoal/55 text-sm font-medium">L</span>
+          </div>
+          <div>
+            <div class="text-charcoal text-sm font-medium">Lena P.</div>
+            <div class="text-charcoal/38 text-xs">Google Review</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="reveal rd2 p-7 rounded-sm border border-gold/30 flex flex-col items-center justify-center text-center" style="background:linear-gradient(135deg,rgba(201,168,76,.12),rgba(201,168,76,.04))">
+        <div class="font-display text-charcoal text-3xl mb-1">106 Reviews</div>
+        <div class="flex gap-0.5 justify-center my-2">
+          <span class="text-gold text-sm">&#9733;&#9733;&#9733;&#9733;</span>
+          <span class="text-gold/55 text-sm">&#9733;</span>
+        </div>
+        <p class="text-charcoal/50 text-sm font-light mb-5">See the full picture on Google</p>
+        <a href="https://maps.google.com/?q=Master+Tailors+825+Granville+St+Vancouver+BC" target="_blank" rel="noopener noreferrer" class="border border-charcoal/30 text-charcoal px-5 py-2.5 text-[.7rem] tracking-wider uppercase hover:bg-charcoal hover:text-cream transition-colors rounded-sm font-sans">
+          View on Google
+        </a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" class="py-24 bg-charcoal relative overflow-hidden noise">
+  <div class="absolute inset-0 pointer-events-none opacity-[.07]" style="background:radial-gradient(ellipse at 75% 50%,#c9a84c 0%,transparent 55%)"></div>
+  <div class="relative max-w-7xl mx-auto px-5">
+    <div class="grid lg:grid-cols-2 gap-16">
+
+      <div>
+        <div class="reveal flex items-center gap-3 mb-4">
+          <div class="h-px w-10 bg-gradient-to-r from-transparent to-gold/60"></div>
+          <span class="text-gold text-[.62rem] tracking-[.32em] uppercase font-light">Find Us</span>
+        </div>
+        <h2 class="reveal font-display text-cream text-5xl md:text-6xl font-light mb-10">Visit<br><em class="text-gold not-italic">the Shop</em></h2>
+
+        <div class="space-y-6">
+          <div class="reveal flex items-start gap-4">
+            <div class="w-10 h-10 border border-gold/28 rounded-sm grid place-items-center shrink-0 mt-0.5">
+              <svg width="15" height="18" viewBox="0 0 15 18" fill="none" stroke="#c9a84c" stroke-width="1.4"><path d="M7.5 1C4.5 1 2 3.5 2 6.5c0 4.5 5.5 10.5 5.5 10.5S13 11 13 6.5C13 3.5 10.5 1 7.5 1z"/><circle cx="7.5" cy="6.5" r="1.5"/></svg>
+            </div>
+            <div>
+              <div class="text-cream/35 text-[.62rem] tracking-[.2em] uppercase mb-1">Address</div>
+              <a href="https://maps.google.com/?q=825+Granville+St+%23606%2C+Vancouver%2C+BC+V6Z+1K9" target="_blank" rel="noopener noreferrer" class="text-cream font-light hover:text-gold transition-colors leading-relaxed">
+                825 Granville St, Suite 606<br>Vancouver, BC V6Z 1K9
+              </a>
+            </div>
+          </div>
+
+          <div class="reveal rd1 flex items-start gap-4">
+            <div class="w-10 h-10 border border-gold/28 rounded-sm grid place-items-center shrink-0">
+              <svg width="15" height="15" viewBox="0 0 15 15" fill="none" stroke="#c9a84c" stroke-width="1.4"><path d="M14 11l-3-3a1 1 0 00-1.4 0l-1.3 1.3c-.1 0-.2-.1-.3-.2-.8-.4-1.9-1.2-3.1-2.5S2.5 3.8 2.1 3c-.1-.1-.2-.3-.2-.4L3.2 1.3A1 1 0 003.2 0L.7.7a1 1 0 00-.4.8c.1 1.3.7 3.4 2.4 5.6C4.5 9.3 6.6 11 9.3 12.1c.5.2 1.1.2 1.5-.2l.8-.8a1 1 0 00.4-.7V11z"/></svg>
+            </div>
+            <div>
+              <div class="text-cream/35 text-[.62rem] tracking-[.2em] uppercase mb-1">Phone</div>
+              <a href="tel:6047254569" class="text-cream font-light hover:text-gold transition-colors text-lg">(604) 725-4569</a>
+            </div>
+          </div>
+
+          <div class="reveal rd2 flex items-start gap-4">
+            <div class="w-10 h-10 border border-gold/28 rounded-sm grid place-items-center shrink-0">
+              <svg width="15" height="15" viewBox="0 0 15 15" fill="none" stroke="#c9a84c" stroke-width="1.4"><circle cx="7.5" cy="7.5" r="6.5"/><path d="M7.5 4v3.5l3 2.5" stroke-linecap="round"/></svg>
+            </div>
+            <div>
+              <div class="text-cream/35 text-[.62rem] tracking-[.2em] uppercase mb-1">Hours</div>
+              <div class="text-cream font-light">Opens 11:00 a.m. Tuesday</div>
+              <div class="text-cream/38 text-sm mt-0.5">Call for full weekly schedule</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="reveal flex flex-wrap gap-3 mt-10">
+          <a href="tel:6047254569" class="btn-gold flex items-center gap-2.5 px-7 py-3.5 text-xs font-medium tracking-[.15em] uppercase rounded-sm font-sans">
+            <svg width="13" height="13" viewBox="0 0 13 13" fill="currentColor"><path d="M12 9l-2.3-2.3a.85.85 0 00-1.2 0L7.5 7.7c-.1 0-.2-.1-.3-.2C6.5 7.2 5.6 6.5 4.5 5.4S2.7 3.7 2.4 3.4l-.2-.3L3.2 2a.85.85 0 000-1.2L.9.5A.85.85 0 00-.2.5L-.8 1.1C-1.2 1.7-1 2.3-.7 2.7c.3 1 .9 2.8 2.3 4.7C3.2 9.5 5.1 11.1 7.2 12c.5.2 1 .4 1.4.4.5 0 .9-.2 1.3-.5l.7-.7A.85.85 0 0012 9z"/></svg>
+            Call to Book
+          </a>
+          <a href="https://maps.google.com/?q=825+Granville+St+%23606%2C+Vancouver%2C+BC+V6Z+1K9" target="_blank" rel="noopener noreferrer" class="btn-outline flex items-center gap-2.5 px-7 py-3.5 text-xs font-medium tracking-[.15em] uppercase rounded-sm font-sans">
+            <svg width="12" height="15" viewBox="0 0 12 15" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M6 1C3.8 1 2 2.8 2 5c0 3.5 4 9 4 9s4-5.5 4-9c0-2.2-1.8-4-4-4z"/><circle cx="6" cy="5" r="1.4"/></svg>
+            Get Directions
+          </a>
+        </div>
+      </div>
+
+      <!-- Stylised map -->
+      <div class="reveal rd1">
+        <div class="relative h-80 lg:h-full min-h-80 rounded-sm overflow-hidden border border-gold/18">
+          <div class="absolute inset-0 map-bg">
+            <svg class="absolute inset-0 w-full h-full" viewBox="0 0 400 320" preserveAspectRatio="xMidYMid slice">
+              <rect width="400" height="320" fill="#1f1c17"/>
+              <rect x="75"  y="0" width="10" height="320" fill="#282420"/>
+              <rect x="155" y="0" width="10" height="320" fill="#282420"/>
+              <rect x="235" y="0" width="10" height="320" fill="#252118"/>
+              <rect x="315" y="0" width="10" height="320" fill="#282420"/>
+              <rect x="0" y="75"  width="400" height="10" fill="#282420"/>
+              <rect x="0" y="155" width="400" height="10" fill="#252118"/>
+              <rect x="0" y="235" width="400" height="10" fill="#282420"/>
+              <rect x="8"   y="8"   width="58" height="58" rx="2" fill="#252018"/>
+              <rect x="94"  y="8"   width="52" height="58" rx="2" fill="#252018"/>
+              <rect x="174" y="8"   width="52" height="58" rx="2" fill="#252018"/>
+              <rect x="254" y="8"   width="52" height="58" rx="2" fill="#252018"/>
+              <rect x="334" y="8"   width="58" height="58" rx="2" fill="#252018"/>
+              <rect x="8"   y="94"  width="58" height="52" rx="2" fill="#252018"/>
+              <rect x="174" y="94"  width="52" height="52" rx="2" fill="#252018"/>
+              <rect x="254" y="94"  width="52" height="52" rx="2" fill="#252018"/>
+              <rect x="334" y="94"  width="58" height="52" rx="2" fill="#252018"/>
+              <rect x="8"   y="174" width="58" height="52" rx="2" fill="#252018"/>
+              <rect x="94"  y="174" width="52" height="52" rx="2" fill="#252018"/>
+              <rect x="254" y="174" width="52" height="52" rx="2" fill="#252018"/>
+              <rect x="334" y="174" width="58" height="52" rx="2" fill="#252018"/>
+              <rect x="8"   y="254" width="58" height="58" rx="2" fill="#252018"/>
+              <rect x="94"  y="254" width="52" height="58" rx="2" fill="#252018"/>
+              <rect x="174" y="254" width="52" height="58" rx="2" fill="#252018"/>
+              <rect x="334" y="254" width="58" height="58" rx="2" fill="#252018"/>
+              <text x="240" y="12" fill="#c9a84c" font-size="7" opacity=".35" font-family="Jost,sans-serif">Granville St</text>
+              <circle cx="240" cy="160" r="22" fill="rgba(201,168,76,.10)"/>
+              <circle cx="240" cy="160" r="12" fill="rgba(201,168,76,.18)"/>
+              <circle cx="240" cy="160" r="5.5" fill="#c9a84c"/>
+              <circle cx="240" cy="160" r="2.5" fill="#1c1814"/>
+            </svg>
+            <div class="absolute bottom-0 inset-x-0 p-5" style="background:linear-gradient(to top,rgba(28,24,20,.96) 0%,rgba(28,24,20,.5) 55%,transparent 100%)">
+              <div class="font-display text-cream text-lg font-light">825 Granville St</div>
+              <div class="text-cream/45 text-sm mt-0.5">Suite 606 &middot; Vancouver, BC</div>
+              <a href="https://maps.google.com/?q=825+Granville+St+%23606%2C+Vancouver%2C+BC+V6Z+1K9" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 text-gold text-[.7rem] tracking-wider uppercase mt-2.5 hover:text-gold-l transition-colors">
+                Open in Google Maps
+                <svg width="9" height="9" viewBox="0 0 9 9" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M1.5 7.5L7.5 1.5M7.5 1.5H3.5M7.5 1.5v4"/></svg>
+              </a>
+            </div>
+          </div>
+          <div class="absolute top-3   left-3  w-5 h-5 border-t border-l border-gold/40 pointer-events-none"></div>
+          <div class="absolute bottom-3 right-3 w-5 h-5 border-b border-r border-gold/40 pointer-events-none"></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="bg-charcoal border-t border-gold/10 py-9">
+  <div class="max-w-7xl mx-auto px-5">
+    <div class="flex flex-col md:flex-row items-center justify-between gap-5">
+      <div class="flex items-center gap-3">
+        <svg width="24" height="24" viewBox="0 0 30 30" fill="none">
+          <circle cx="9"  cy="9"  r="5.5" stroke="#c9a84c" stroke-width="1.4"/>
+          <circle cx="9"  cy="21" r="5.5" stroke="#c9a84c" stroke-width="1.4"/>
+          <line x1="13.8" y1="7.4" x2="28" y2="15" stroke="#c9a84c" stroke-width="1.4" stroke-linecap="round"/>
+          <line x1="13.8" y1="22.6" x2="28" y2="15" stroke="#c9a84c" stroke-width="1.4" stroke-linecap="round"/>
+          <circle cx="9" cy="9"  r="2.2" fill="#c9a84c"/>
+          <circle cx="9" cy="21" r="2.2" fill="#c9a84c"/>
+        </svg>
+        <div>
+          <div class="font-display text-cream text-lg font-medium">Master Tailors</div>
+          <div class="text-gold/55 text-[.58rem] tracking-wider uppercase">Vancouver, BC</div>
+        </div>
+      </div>
+      <div class="flex flex-wrap items-center justify-center gap-2 text-xs text-cream/38">
+        <a href="tel:6047254569" class="hover:text-gold transition-colors">(604) 725-4569</a>
+        <span class="text-cream/18">&middot;</span>
+        <a href="https://maps.google.com/?q=825+Granville+St+%23606%2C+Vancouver%2C+BC+V6Z+1K9" target="_blank" rel="noopener noreferrer" class="hover:text-gold transition-colors">825 Granville St #606</a>
+        <span class="text-cream/18">&middot;</span>
+        <span>Vancouver, BC V6Z 1K9</span>
+      </div>
+      <div class="text-cream/25 text-[.68rem] tracking-wide">&copy; 2025 Master Tailors</div>
+    </div>
+    <div class="mt-8 flex items-center gap-2 opacity-15">
+      <div class="h-px flex-1 bg-gold"></div>
+      <div class="w-1 h-1 bg-gold rotate-45"></div>
+      <div class="h-px w-14 bg-gold"></div>
+      <div class="w-1 h-1 bg-gold rotate-45"></div>
+      <div class="h-px flex-1 bg-gold"></div>
+    </div>
+  </div>
+</footer>
+
+<!-- FLOATING MOBILE CTA -->
+<div class="mobile-cta fixed bottom-5 inset-x-0 flex justify-center z-40 md:hidden pointer-events-none">
+  <a href="tel:6047254569" class="pointer-events-auto btn-gold flex items-center gap-2.5 px-7 py-3.5 text-xs font-medium tracking-[.15em] uppercase rounded-full font-sans" style="box-shadow:0 8px 32px rgba(28,24,20,.55),0 0 0 1px rgba(201,168,76,.3)">
+    <svg width="13" height="13" viewBox="0 0 13 13" fill="currentColor"><path d="M12 9l-2.3-2.3a.85.85 0 00-1.2 0L7.5 7.7c-.1 0-.2-.1-.3-.2C6.5 7.2 5.6 6.5 4.5 5.4S2.7 3.7 2.4 3.4l-.2-.3L3.2 2a.85.85 0 000-1.2L.9.5A.85.85 0 00-.2.5L-.8 1.1C-1.2 1.7-1 2.3-.7 2.7c.3 1 .9 2.8 2.3 4.7C3.2 9.5 5.1 11.1 7.2 12c.5.2 1 .4 1.4.4.5 0 .9-.2 1.3-.5l.7-.7A.85.85 0 0012 9z"/></svg>
+    Call (604) 725-4569
+  </a>
+</div>
+
+<script>
+  const nav = document.getElementById('nav');
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('scrolled', window.scrollY > 40);
+  }, { passive: true });
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('in'); });
+  }, { threshold: 0.12, rootMargin: '0px 0px -32px 0px' });
+
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
